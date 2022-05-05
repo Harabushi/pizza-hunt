@@ -49,7 +49,7 @@ const pizzaController = {
   // update pizza by id
   updatePizza({ params, body }, res) {
     // could also use either updateOne or updateMany here, findOne... returns the file as well as updating whereas the others return nothing
-    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true })
+    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then(dbPizzaData => {
         if (!dbPizzaData) {
           res.status(404).json({ message: 'No pizza found with this id!' });
